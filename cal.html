@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("calc.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .calc {
+            padding: 20px;
+            border: 2px solid #fff;
+            width: 350px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0px 3px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            padding: 20px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 40px;
+            text-align: right;
+            border-radius: 10px;
+        }
+
+        input::placeholder {
+            color: #ffffff86;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:active {
+            transform: scale(0.9);
+        }
+
+        button:hover {
+            background: #fff;
+            color: #ff6600;
+        }
+
+        .ope{
+            font-size: 1.2em;
+        }
+        .eqbtn {
+            background-color: #ff6600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calc">
+        <input type="text" placeholder="0" id="inputBox">
+        <div class="buttons">
+            <button onclick="clearInput()">AC</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button class="ope" onclick="appendValue('%')">%</button>
+            <button class="ope" onclick="appendValue('/')">/</button>
+
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button class="ope" onclick="appendValue('*')">*</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button class="ope" onclick="appendValue('-')">-</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button class="ope" onclick="appendValue('+')">+</button>
+
+            <button onclick="appendValue('00')">00</button>
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button class="eqbtn" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let input = document.getElementById('inputBox');
+        let expression = "";
+
+        function appendValue(value) {
+            expression += value;
+            input.value = expression;
+        }
+
+        function clearInput() {
+            expression = "";
+            input.value = "";
+        }
+
+        function deleteLast() {
+            expression = expression.slice(0, -1);
+            input.value = expression;
+        }
+
+        function calculate() {
+            try {
+                let result = eval(expression);
+                input.value = result;
+                expression = result.toString();
+            } catch (error) {
+                input.value = "Error";
+                expression = "";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
