@@ -16,5 +16,3 @@ JavaScript → Functionality
 🔹 LinkedIn: Srinivas Jagarla
 
 📌 If you like this project, give it a ⭐ on GitHub!
-
-This is clean, short, and professional. You can copy and paste it into your README.md file. 🚀
